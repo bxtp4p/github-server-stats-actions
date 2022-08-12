@@ -18,10 +18,7 @@ jobs:
           personal-access-token: ${{ secrets.ACCESS_TOKEN }}
           enterprise-or-organization: ${{ secrets.ENTERPRISE_NAME }}
           prometheus-pushgateway-url: ${{ secrets.PROM_PUSHGATEWAY_URL }}
-  echo:
-    runs-on: ubuntu-latest
-    needs: export
-    steps:
+
       - run: |
           echo "${{ steps.export.outputs.prom_metrics }}"
 
