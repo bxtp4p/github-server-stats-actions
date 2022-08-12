@@ -52,7 +52,7 @@ See [action.yml](./action.yml)
 
 ```
 steps:
-      - uses: bxtp4p/github-server-stats-prom-exporter@main
+      - uses: bxtp4p/github-server-stats-prom-exporter-action@main
         with:
           personal-access-token: ${{ secrets.ACCESS_TOKEN }}
           enterprise-or-organization: 'your-enterprise-or-organization'

@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - uses: bxtp4p/github-server-stats-prom-exporter@main
+      - uses: ./
         with:
           personal-access-token: ${{ secrets.ACCESS_TOKEN }}
           enterprise-or-organization: ${{ secrets.ENTERPRISE_NAME }}
