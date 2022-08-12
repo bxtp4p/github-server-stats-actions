@@ -243,7 +243,9 @@ try {
   }())
   .then(function (data) {
     const now = new Date();
-    console.log("Total number of records returned: ", data.length);
+    console.log("Total number of records returned from API: ", data.length);
+
+    let counter = 0;
       
     for(var i=0; i<data.length; i++) {
       var item = data[i];
@@ -252,6 +254,8 @@ try {
       if (collection_date.getUTCFullYear() === now.getUTCFullYear() 
           && collection_date.getUTCMonth() === now.getUTCMonth() 
           && collection_date.getUTCDate() === now.getUTCDate() - 1) {
+
+          counter++;
 
           total_dormant_users_gauge.set({ host_name: item.host_name, ghes_version: item.ghes_version }, item.dormant_users.total_dormant_users);
 
@@ -303,13 +307,13 @@ try {
             core.setFailed(err.message);
           });
       }
+
+      console.log(`Number of records converted to metrics: ${counter}`);
     }
 
     (async function () {
       const prom_metrics = await prom.register.metrics();
-      console.log("Prometheus Metrics");
-      console.log("==================");
-      console.log(prom_metrics);
+      core.setOutput('prom_metrics', prom_metrics);
     })();
     
   });
