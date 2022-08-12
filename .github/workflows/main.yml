@@ -14,11 +14,12 @@ jobs:
       - uses: actions/checkout@v3
       
       - uses: ./
+        id: prom-export
         with:
           personal-access-token: ${{ secrets.ACCESS_TOKEN }}
           enterprise-or-organization: ${{ secrets.ENTERPRISE_NAME }}
           prometheus-pushgateway-url: ${{ secrets.PROM_PUSHGATEWAY_URL }}
 
       - run: |
-          echo "${{ steps.export.outputs.prom_metrics }}"
+          echo "${{ steps.prom-export.outputs.prom_metrics }}"
 
