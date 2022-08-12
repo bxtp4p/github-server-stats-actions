@@ -72,3 +72,10 @@ steps:
 ### `prometheus-pushgateway-url`
 
 **Required** The URL of the Prometheus Pushgateway to send the metrics to.
+
+
+## Outputs
+
+### `prom_metrics`
+
+The set of metrics sent to the Prometheus Pushgateway.
