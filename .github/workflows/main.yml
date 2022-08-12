@@ -20,6 +20,5 @@ jobs:
           enterprise-or-organization: ${{ secrets.ENTERPRISE_NAME }}
           prometheus-pushgateway-url: ${{ secrets.PROM_PUSHGATEWAY_URL }}
 
-      - run: |
-          echo "${{ steps.prom-export.outputs.prom_metrics }}"
-
+      # - run: |
+      #     echo "${{ steps.prom-export.outputs.prom_metrics }}"
