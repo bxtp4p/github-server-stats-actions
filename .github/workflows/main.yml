@@ -23,5 +23,5 @@ jobs:
     needs: export
     steps:
       - run: |
-        echo "${{needs.export.outputs.prom_metrics}}"
+          echo "${{needs.export.outputs.prom_metrics}}"
 
