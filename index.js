@@ -307,9 +307,9 @@ try {
             core.setFailed(err.message);
           });
       }
-
-      console.log(`Number of records converted to metrics: ${counter}`);
     }
+
+    console.log(`Number of records converted to metrics: ${counter}`);
 
     (async function () {
       const prom_metrics = await prom.register.metrics();

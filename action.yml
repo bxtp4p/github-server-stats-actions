@@ -10,6 +10,9 @@ inputs:
   prometheus-pushgateway-url:
     description: 'The URL of a Prometheus Pushgateway to send the metrics to'
     required: true
+outputs:
+  prom_metrics:
+    description: The set of Prometheus metrics sent to the Prometheus Pushgateway
 runs:
   using: 'node16'
   main: 'index.js'
