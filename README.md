@@ -56,14 +56,14 @@ steps:
         with:
           personal-access-token: ${{ secrets.ACCESS_TOKEN }}
           enterprise-or-organization: 'your-enterprise-or-organization'
-          prometheus-pushgateway-url: 'https://prometheus-pushgateway.example.com'
+          prometheus-pushgateway-url: 'http://localhost:9091'
 ```
 
 ## Inputs
 
 ### `personal-access-token`
 
-**Required** The access token to use to make the call the the GitHub API to retrieve the [Server Stats](https://docs.github.com/en/rest/enterprise-admin/admin-stats). Must include `read:enterprise` and/or `read:org` scopes, depending on the enterprise or organization you want to query.
+**Required** The [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to use to make the call the the GitHub API to retrieve the [Server Stats](https://docs.github.com/en/rest/enterprise-admin/admin-stats). Must include `read:enterprise` and/or `read:org` scopes, depending on the enterprise or organization you want to query.
 
 ### `enterprise-or-organization`
 
@@ -71,11 +71,11 @@ steps:
 
 ### `prometheus-pushgateway-url`
 
-**Required** The URL of the Prometheus Pushgateway to send the metrics to.
+**Required** The URL of the Prometheus Pushgateway to send the metrics to. For example, `http://localhost:9091`.
 
 
 ## Outputs
 
 ### `prom_metrics`
 
-The set of metrics sent to the Prometheus Pushgateway.
+The set of metrics sent to the Prometheus Pushgateway. 
