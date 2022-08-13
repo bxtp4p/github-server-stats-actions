@@ -1,6 +1,6 @@
-# github-server-stats-prom-exporter
+# GitHub Server Stats Prometheus Exporter Action
 
-This action exports [GitHub Server Stats](https://docs.github.com/en/rest/enterprise-admin/admin-stats) to a Prometheus Pushgateway and can then be scraped by Prometheus.
+This action exports [GitHub Server Stats](https://docs.github.com/en/rest/enterprise-admin/admin-stats) to a [Prometheus Pushgateway](https://github.com/prometheus/pushgateway) which can then be [scraped by Prometheus](https://prometheus.io/docs/instrumenting/pushing/).
 
 ## Metrics
 
