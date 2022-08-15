@@ -253,7 +253,7 @@ try {
       
       if (collection_date.getUTCFullYear() === now.getUTCFullYear() 
           && collection_date.getUTCMonth() === now.getUTCMonth() 
-          && collection_date.getUTCDate() === now.getUTCDate() - 1) {
+          && collection_date.getUTCDate() >= now.getUTCDate() - 1) {
 
           counter++;
 
