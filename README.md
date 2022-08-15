@@ -2,6 +2,8 @@
 
 This action exports [GitHub Server Stats](https://docs.github.com/en/rest/enterprise-admin/admin-stats) to a [Prometheus Pushgateway](https://github.com/prometheus/pushgateway) which can then be [scraped by Prometheus](https://prometheus.io/docs/instrumenting/pushing/).
 
+Best used on a schedule, as can be seen in the [example workflow](./.github/workflows/main.yml). 
+
 ## Metrics
 
 All metrics are labeled with the following labels:
