@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
   
   schedule:
-  # runs 2x an hour, 17th and 37th minute
-    - cron:  '17/30 * * * *'
+  # runs 2x an hour, 17th, 32nd and 37th minute
+    - cron:  '17/15 * * * *'
 
 jobs:
   export:
