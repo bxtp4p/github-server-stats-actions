@@ -4,21 +4,46 @@ on:
   workflow_dispatch:
   
   schedule:
-  # runs 2x an hour, 17th, 32nd and 37th minute
+  # runs 3x an hour, 17th, 32nd and 37th minute
     - cron:  '17/15 * * * *'
+env:
+  SERVER_STATS_DATA_FILE: server-stats-data.json
 
 jobs:
-  export:
+  retrieve-server-stats:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       
-      - uses: ./
-        id: prom-export
+      - uses: ./get-server-stats
+        id: get-server-stats
         with:
           personal-access-token: ${{ secrets.ACCESS_TOKEN }}
           enterprise-or-organization: ${{ secrets.ENTERPRISE_NAME }}
-          prometheus-pushgateway-url: ${{ secrets.PROM_PUSHGATEWAY_URL }}
+          filename: ${{ env.SERVER_STATS_DATA_FILE }}
+          
+      - name: Archive Server Stats data
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.SERVER_STATS_DATA_FILE }}
+          path: ${{ steps.get-server-stats.outputs.server-stats-data-file }}
 
-      # - run: |
-      #     echo "${{ steps.prom-export.outputs.prom_metrics }}"
+  export-to-prometheus:
+    needs: retrieve-server-stats
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.SERVER_STATS_DATA_FILE }}
+          path: input/
+
+      - uses: actions/checkout@v3
+
+      - uses: ./send-to-prometheus-gateway
+        id: send-to-prometheus-gateway
+        with:
+          server-stats-data-file:  input/${{ env.SERVER_STATS_DATA_FILE }}
+          prometheus-pushgateway-url: ${{ secrets.PROMETHEUS_PUSHGATEWAY_URL }} 
+
+      # - name: Show Prometheus Metrics
+      #   run: echo "${{ steps.send-to-prometheus-gateway.outputs.prometheus-metrics }}"

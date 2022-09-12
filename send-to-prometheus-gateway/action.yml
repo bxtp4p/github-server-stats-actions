@@ -1,0 +1,15 @@
+name: 'Send to Prometheus Push Gateway'
+description: 'Exports GitHub Server Stats to a Prometheus Pushgateway'
+inputs:
+  server-stats-data: 
+    description: 'The path to the server stats data file to be sent to Prometheus.'
+    required: true
+  prometheus-pushgateway-url:
+    description: 'The URL of a Prometheus Push Gateway to send the metrics to'
+    required: true
+outputs:
+  prometheus-metrics:
+    description: 'The metrics that were sent to Prometheus.'
+runs:
+  using: 'node16'
+  main: 'index.js'

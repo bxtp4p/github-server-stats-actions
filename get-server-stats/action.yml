@@ -1,0 +1,19 @@
+name: 'Get Server Stats'
+description: "Retrieves an enterprise's or organization's server stats from GitHub."
+inputs:
+  personal-access-token:  
+    description: 'The PAT used to call the GitHub REST API.'
+    required: true
+  enterprise-or-organization:  
+    description: 'Enterprise or Organization slug.'
+    required: true
+  filename:
+    description: 'The filename to save the server stats data to.'
+    required: false 
+    default: server-stats-data.json
+outputs:
+  server-stats-data-file:
+    description: 'The path to the downloaded server stats data file.'
+runs:
+  using: 'node16'
+  main: 'index.js'
