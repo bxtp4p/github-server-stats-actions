@@ -1,7 +1,7 @@
 name: 'Send to Prometheus Push Gateway'
 description: 'Exports GitHub Server Stats to a Prometheus Pushgateway'
 inputs:
-  server-stats-data: 
+  server-stats-data-file: 
     description: 'The path to the server stats data file to be sent to Prometheus.'
     required: true
   prometheus-pushgateway-url:
