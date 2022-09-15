@@ -35,7 +35,6 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: ${{ env.SERVER_STATS_DATA_FILE }}
-          path: input/
 
       - uses: actions/checkout@v3
 
