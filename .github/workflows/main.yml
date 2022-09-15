@@ -42,7 +42,7 @@ jobs:
       - uses: ./send-to-prometheus-gateway
         id: send-to-prometheus-gateway
         with:
-          server-stats-data-file:  ${{steps.download.outputs.download-path}}
+          server-stats-data-file:  ${{steps.download.outputs.download-path}}/${{ env.SERVER_STATS_DATA_FILE }}
           prometheus-pushgateway-url: ${{ secrets.PROMETHEUS_PUSHGATEWAY_URL }}
 
       # - name: Show Prometheus Metrics
