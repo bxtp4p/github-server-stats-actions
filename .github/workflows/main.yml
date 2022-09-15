@@ -41,8 +41,8 @@ jobs:
       - uses: ./send-to-prometheus-gateway
         id: send-to-prometheus-gateway
         with:
-          server-stats-data-file:  ${{ env.SERVER_STATS_DATA_FILE }}
-          prometheus-pushgateway-url: ${{ secrets.PROMETHEUS_PUSHGATEWAY_URL }} 
+          server-stats-data-file:  "${{ env.SERVER_STATS_DATA_FILE }}"
+          prometheus-pushgateway-url: "${{ secrets.PROMETHEUS_PUSHGATEWAY_URL }}"
 
       # - name: Show Prometheus Metrics
       #   run: echo "${{ steps.send-to-prometheus-gateway.outputs.prometheus-metrics }}"
