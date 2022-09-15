@@ -32,7 +32,8 @@ jobs:
     needs: retrieve-server-stats
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v3
+      - name: download
+        uses: actions/download-artifact@v3
         with:
           name: ${{ env.SERVER_STATS_DATA_FILE }}
 
@@ -41,8 +42,8 @@ jobs:
       - uses: ./send-to-prometheus-gateway
         id: send-to-prometheus-gateway
         with:
-          server-stats-data-file:  "${{ env.SERVER_STATS_DATA_FILE }}"
-          prometheus-pushgateway-url: "${{ secrets.PROMETHEUS_PUSHGATEWAY_URL }}"
+          server-stats-data-file:  ${{steps.download.outputs.download-path}}
+          prometheus-pushgateway-url: ${{ secrets.PROMETHEUS_PUSHGATEWAY_URL }}
 
       # - name: Show Prometheus Metrics
       #   run: echo "${{ steps.send-to-prometheus-gateway.outputs.prometheus-metrics }}"
