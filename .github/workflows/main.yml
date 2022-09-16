@@ -37,6 +37,8 @@ jobs:
         with:
           name: ${{ env.SERVER_STATS_DATA_FILE }}
           path: ${{ env.GITHUB_WORKSPACE }}
+      
+      - run: ls -la $GITHUB_WORKSPACE
 
       - uses: actions/checkout@v3
 
