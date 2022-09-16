@@ -218,7 +218,8 @@ const gh_server_stats_suspended_users_total_gauge = new prom.Gauge({
 try {
   const prom_pushgateway_url = core.getInput("prometheus-pushgateway-url");
   const server_data_file = core.getInput("server-stats-data-file");
-  const server_data = JSON.parse(fs.readFileSync(server_data_file));
+  const file_contents = fs.readFileSync(server_data_file, "utf8");
+  const server_data = JSON.parse(file_contents);
   const gateway = new prom.Pushgateway(prom_pushgateway_url);
   const now = new Date();
 
