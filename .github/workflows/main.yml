@@ -25,7 +25,7 @@ jobs:
       - name: Archive Server Stats data
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.SERVER_STATS_DATA_FILE }}
+          name: server-stats-data
           path: ${{ steps.get-server-stats.outputs.server-stats-data-file }}
 
   export-to-prometheus:
@@ -35,8 +35,8 @@ jobs:
       - id: download
         uses: actions/download-artifact@v3
         with:
-          name: ${{ env.SERVER_STATS_DATA_FILE }}
-          path: ${{ github.workspace }}
+          name: server-stats-data
+          path: ${{ github.workspace }}/${{ env.SERVER_STATS_DATA_FILE }}
       
       - run: ls -la $GITHUB_WORKSPACE
 
