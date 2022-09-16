@@ -36,7 +36,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{ env.SERVER_STATS_DATA_FILE }}
-          path: ${{ env.GITHUB_WORKSPACE }}
+          path: ${{ github.workspace }}
       
       - run: ls -la $GITHUB_WORKSPACE
 
@@ -45,7 +45,7 @@ jobs:
       - uses: ./send-to-prometheus-gateway
         id: send-to-prometheus-gateway
         with:
-          server-stats-data-file:  ${{ env.GITHUB_WORKSPACE }}/${{ env.SERVER_STATS_DATA_FILE }}
+          server-stats-data-file:  ${{ github.workspace }}/${{ env.SERVER_STATS_DATA_FILE }}
           prometheus-pushgateway-url: ${{ secrets.PROMETHEUS_PUSHGATEWAY_URL }}
 
       # - name: Show Prometheus Metrics
